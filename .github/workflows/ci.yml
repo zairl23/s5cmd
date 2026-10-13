@@ -31,11 +31,13 @@ jobs:
 
   test:
     strategy:
+      fail-fast: false
       matrix:
+        # newer Go required: older race-enabled binaries crash on current
+        # macOS runners (dyld: missing LC_UUID load command)
         go-version:
-          - 1.22.x
-          - 1.21.x
-          - 1.20.x
+          - 1.25.x
+          - 1.24.x
         os:
           - macos
           - ubuntu
